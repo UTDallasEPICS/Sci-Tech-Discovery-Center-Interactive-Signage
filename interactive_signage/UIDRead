@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO # Import Library with functions to control GPIO pins of Raspberry Pi
 from pn532 import * # Import driver for PN532
-
+# Test changes
 
 if name == 'main':
     try:
@@ -31,9 +31,7 @@ if name == 'main':
                 final_val = uint | final_val # Combines all bytes into final_val
             '''
             print(f"Final value: {final_val:032b}") # Prints final_val
-
-
-    except Exception as e:
-        print(e)
-    finally:
-        GPIO.cleanup()
+            except Exception as e:
+            print(e)
+            finally:
+            GPIO.cleanup()
