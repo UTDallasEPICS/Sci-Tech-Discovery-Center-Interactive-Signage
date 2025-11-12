@@ -1,4 +1,4 @@
-import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO 
 import time
 # Set GPIO mode
 GPIO.setmode(GPIO.BCM)
@@ -15,6 +15,7 @@ try:
         current_state = GPIO.input(button_pin)
         # Check for state change: Released (LOW) -> Pressed (HIGH)
         # Only print when state was previously LOW and current state is HIGH
+        # Prevents continous printing while button is held down
         if current_state == GPIO.HIGH and previous_state == GPIO.LOW:
             print(True)
             time.sleep(0.05)
