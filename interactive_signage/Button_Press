@@ -1,0 +1,26 @@
+import RPi.GPIO as GPIO
+import time
+# Set GPIO mode
+GPIO.setmode(GPIO.BCM)
+button_pin = 17
+
+# Setup GPIO pin as input with pull-down resistor
+GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+# Variable to track state of button
+previous_state = GPIO.LOW
+try:
+    while True:
+        # Read current state of the button
+        current_state = GPIO.input(button_pin)git
+        # Check for state change: Released (LOW) -> Pressed (HIGH)
+        # Only print when state was previously LOW and current state is HIGH
+        if current_state == GPIO.HIGH and previous_state == GPIO.LOW:
+            print(True)
+            time.sleep(0.05)
+        # Update previous state
+            previous_state = current_state
+            time.sleep(0.01)
+except KeyboardInterrupt:
+    print("\nExiting...")
+    GPIO.cleanup()
