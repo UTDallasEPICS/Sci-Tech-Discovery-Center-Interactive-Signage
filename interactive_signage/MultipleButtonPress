@@ -1,0 +1,46 @@
+import RPi.GPIO as GPIO
+import time
+# Set GPIO mode
+GPIO.setmode(GPIO.BCM)
+# Define GPIO pins for three buttons
+BUTTON_CONFIG = {
+    # Format: 'ButtonName': (BCM_Pin, Output_Char)
+    'Button1': (17, 'A'), 
+    'Button2': (27, 'B'), 
+    'Button3': (22, 'C')
+}
+
+# Dictionary to track the previous state for each button (using pin number as key)
+previous_states = {}
+
+# Setup GPIO pins as input with pull-down resistor
+for name, (pin,code) in BUTTON_CONFIG.items():
+    GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    # Setting starting state to be LOW
+    previous_states[pin] = GPIO.LOW
+
+    try:
+        while True:
+            for name, (pin, char) in BUTTON_CONFIG.items():
+                
+                # Read current state and updates dictionary
+                current_state = GPIO.input(pin)
+                previous_state = previous_states[pin]
+
+                # Ensures output is printed only when the button is first pressed
+                if current_state == GPIO.HIGH and previous_state == GPIO.LOW:
+                    
+                    # Prints unique character associated with that button
+                    print(char)
+                    
+                    time.sleep(0.05) 
+                
+                # Updates current state
+                previous_states[pin] = current_state
+
+            time.sleep(0.01)
+
+    except KeyboardInterrupt:
+        print("\nExiting program...")
+    finally:
+        GPIO.cleanup()

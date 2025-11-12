@@ -12,7 +12,7 @@ previous_state = GPIO.LOW
 try:
     while True:
         # Read current state of the button
-        current_state = GPIO.input(button_pin)git
+        current_state = GPIO.input(button_pin)
         # Check for state change: Released (LOW) -> Pressed (HIGH)
         # Only print when state was previously LOW and current state is HIGH
         if current_state == GPIO.HIGH and previous_state == GPIO.LOW:

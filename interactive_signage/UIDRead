@@ -21,16 +21,15 @@ if name == 'main':
             if uid is None:
                 continue
             print('Found card with UID:', [i for i in uid])
-            
-            final_val = 0;
+
             # Combine the UID bytes into a single integer value
             for i in range(len(uid)):
                 uint = uid[i] % (1<<32) # Ensures value is 32-bit unsigned integer
                 uint = uint << 8*(3 -i) # Shifts bits to correct position
-                #print('{:032b}'.format(uint)) 
+                #print final value 
                 final_val = uint | final_val # Combines all bytes into final_val
-                print(f"UID Converted to Unsigned 32-Bit decimal: {final_val}") # Prints final_val in decimal form
-                break
+            print(f"UID converted to decimal: {final_val}") # Prints final_val in decimal form
+            break
     except Exception as e:
             print(f"\nAn error occured: {e}")
     finally:
