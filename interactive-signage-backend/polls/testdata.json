@@ -43,5 +43,50 @@
             "es": "artifacts/kidney/es.mp4",
             "te": "artifacts/kidney/te.mp4"
         }
+    },
+    {
+        "id": "00110111",
+        "name": "intestines",
+        "path": {
+            "en": "artifacts/intestines/en.mp4",
+            "es": "artifacts/intestines/es.mp4",
+            "te": "artifacts/intestines/te.mp4"
+        }
+    },
+    {
+        "id": "00111111",
+        "name": "skin",
+        "path": {
+            "en": "artifacts/skin/en.mp4",
+            "es": "artifacts/skin/es.mp4",
+            "te": "artifacts/skin/te.mp4"
+        }
+    },
+    {
+        "id": "00101111",
+        "name": "artery",
+        "path": {
+            "en": "artifacts/artery/en.mp4",
+            "es": "artifacts/artery/es.mp4",
+            "te": "artifacts/artery/te.mp4"
+        }
+    },
+    {
+        "id": "00110111",
+        "name": "vein",
+        "path": {
+            "en": "artifacts/vein/en.mp4",
+            "es": "artifacts/vein/es.mp4",
+            "te": "artifacts/vein/te.mp4"
+        }
+    },
+    {
+        "id": "00111111",
+        "name": "nerves",
+        "path": {
+            "en": "artifacts/nerves/en.mp4",
+            "es": "artifacts/nerves/es.mp4",
+            "te": "artifacts/nerves/te.mp4"
+        }
     }
 ]
