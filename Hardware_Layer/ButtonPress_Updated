@@ -33,7 +33,7 @@ try:
                     
                     # Prints unique character associated with that button
                     print(char)
-                    url = f"https://localhost:8000/api/receive-button/?id={char}"  # URL for API call
+                    url = f"https://localhost:8000/api/receive-button/?button={char}" # URL for API call
                     response = requests.get(url)
                     print(f"Sent character to server, received status code: {response.status_code}")
                     
