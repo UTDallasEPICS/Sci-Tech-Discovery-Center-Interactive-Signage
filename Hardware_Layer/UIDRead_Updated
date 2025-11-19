@@ -1,0 +1,47 @@
+import RPi.GPIO as GPIO
+import time
+import requests 
+from pn532 import *
+
+
+if __name__ == '__main__':
+    try:
+        pn532 = PN532_SPI(debug=False, reset=20, cs=4)
+
+        ic, ver, rev, support = pn532.get_firmware_version()
+        print('Found PN532 with firmware version: {0}.{1}'.format(ver, rev))
+
+        # Configure PN532 to communicate with MiFare cards
+        pn532.SAM_configuration()
+
+        print('Waiting for RFID/NFC card...')
+        final_val = 0 # Initialize variable to hold combined UID value
+        previous_uid = None
+        last_scan = 0
+        while True:
+            # Check if a card is available to read
+            uid = pn532.read_passive_target(timeout=0.5)
+            #print('.', end="")
+            # Try again if no card is available.
+            if uid is None or (uid == previous_uid and time.time() - last_scan < 3):
+                continue
+            #print('Found card with UID:', [i for i in uid])
+
+            # Combine the UID bytes into a single integer value
+            for i in range(len(uid)):
+                uint = uid[i] % (1<<32) # Ensures value is 32-bit unsigned integer
+                uint = uint << 8*(3 -i) # Shifts bits to correct position
+                #print('{:032b}'.format(uint)) 
+                final_val = uint | final_val # Combines all bytes into final_val
+            
+            print(f"{final_val}") # Prints final_val
+            url = f"https://localhost:8000/api/receive-id/?id={final_val}"  # URL for API call
+            response = requests.get(url)
+            print(f"Sent UID to server, received status code: {response.status_code}")  
+            previous_uid = uid
+            last_scan = time.time()
+
+    except Exception as e:
+        print(e)
+    finally:
+        GPIO.cleanup()
