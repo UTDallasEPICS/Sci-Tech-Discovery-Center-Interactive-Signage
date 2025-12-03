@@ -1,0 +1,51 @@
+import RPi.GPIO as GPIO
+import time
+import requests
+
+# Set GPIO mode
+GPIO.setmode(GPIO.BCM)
+# Define GPIO pins for three buttons
+BUTTON_CONFIG = {
+    # Format: 'ButtonName': (GPIOPin, Output_Char)
+    'Button1': (17, 'a'), 
+    'Button2': (27, 'b'), 
+    'Button3': (22, 'c')
+}
+
+# Dictionary to track the previous state for each button 
+previous_states = {}
+
+# Setup GPIO pins as input with pull-down resistor
+for name, (pin, code) in BUTTON_CONFIG.items():
+    GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    # Setting starting state to be LOW
+    previous_states[pin] = GPIO.LOW
+
+try:
+    while True:
+        for name, (pin, char) in BUTTON_CONFIG.items():
+                
+                # Read current state and updates dictionary
+                current_state = GPIO.input(pin)
+                previous_state = previous_states[pin]
+
+                # Ensures output is printed only when the button is first pressed
+                if current_state == GPIO.HIGH and previous_state == GPIO.LOW:
+                    # Prints uniqsue character associated with that button
+                    print(char)
+                    url = f"http://localhost:8000/api/receive-button/?button={char}" # URL for API call
+                    response = requests.get(url)
+                    print(f"Sent character to server, received status code: {response.status_code}")
+                    print(f"response message: {response.text}")
+                    time.sleep(0.05) 
+                
+                # Updates current state
+                previous_states[pin] = current_state
+
+                time.sleep(0.01)
+except KeyboardInterrupt:
+    print("\nExiting program...")
+except Exception as e:
+    print(f"An error occurred: {e}")
+finally:
+        GPIO.cleanup()
