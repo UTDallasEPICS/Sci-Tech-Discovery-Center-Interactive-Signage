@@ -1,0 +1,92 @@
+[
+    {
+        "id": "1212866967841409",
+        "name": "heart",
+        "path": {
+            "en": "artifacts/heart/en.mp4",
+            "es": "artifacts/heart/es.mp4",
+            "te": "artifacts/heart/te.mp4"
+        }
+    },
+    {
+        "id": "1356877221276289",
+        "name": "brain",
+        "path": {
+            "en": "artifacts/brain/en.mp4",
+            "es": "artifacts/brain/es.mp4",
+            "te": "artifacts/brain/te.mp4"
+        }
+    },
+    {
+        "id": "1200652064074369",
+        "name": "lungs",
+        "path": {
+            "en": "artifacts/lungs/en.mp4",
+            "es": "artifacts/lungs/es.mp4",
+            "te": "artifacts/lungs/te.mp4"
+        }
+    },
+    {
+        "id": "1303980387281537",
+        "name": "liver",
+        "path": {
+            "en": "artifacts/liver/en.mp4",
+            "es": "artifacts/liver/es.mp4",
+            "te": "artifacts/liver/te.mp4"
+        }
+    },
+    {
+        "id": "1371020531804801",
+        "name": "kidney",
+        "path": {
+            "en": "artifacts/kidney/en.mp4",
+            "es": "artifacts/kidney/es.mp4",
+            "te": "artifacts/kidney/te.mp4"
+        }
+    },
+    {
+        "id": "1201708626029185",
+        "name": "intestines",
+        "path": {
+            "en": "artifacts/intestines/en.mp4",
+            "es": "artifacts/intestines/es.mp4",
+            "te": "artifacts/intestines/te.mp4"
+        }
+    },
+    {
+        "id": "1320988474550913",
+        "name": "skin",
+        "path": {
+            "en": "artifacts/skin/en.mp4",
+            "es": "artifacts/skin/es.mp4",
+            "te": "artifacts/skin/te.mp4"
+        }
+    },
+    {
+        "id": "1275423149730433",
+        "name": "artery",
+        "path": {
+            "en": "artifacts/artery/en.mp4",
+            "es": "artifacts/artery/es.mp4",
+            "te": "artifacts/artery/te.mp4"
+        }
+    },
+    {
+        "id": "1154575671700097",
+        "name": "vein",
+        "path": {
+            "en": "artifacts/vein/en.mp4",
+            "es": "artifacts/vein/es.mp4",
+            "te": "artifacts/vein/te.mp4"
+        }
+    },
+    {
+        "id": "1270045867453057",
+        "name": "nerves",
+        "path": {
+            "en": "artifacts/nerves/en.mp4",
+            "es": "artifacts/nerves/es.mp4",
+            "te": "artifacts/nerves/te.mp4"
+        }
+    }
+]

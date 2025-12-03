@@ -55,10 +55,18 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mysite.urls'
 
+# specify the React build directory
+REACT_BUILD_DIR = BASE_DIR.parent / 'frontend' / 'dist'
+
+
+# specify the artifacts directory
+ARTIFACTS_DIR = BASE_DIR.parent / 'artifacts'
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [REACT_BUILD_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,7 +128,17 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    REACT_BUILD_DIR / 'assets',
+]
+
+MEDIA_URL = '/home/epics/final_repo/Sci-Tech-Discovery-Center-Interactive-Sinage/'
+
+MEDIA_ROOT = ARTIFACTS_DIR
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+

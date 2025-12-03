@@ -1,4 +1,4 @@
-#!/home/epics/final_repo/Sci-Tech-Discovery-Center-Interactive-Sinage/interactive-signage-backend/fvenv/bin/python3
+#!/home/epics/final_repo/Sci-Tech-Discovery-Center-Interactive-Sinage/interactive-signage-backend/fvenv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

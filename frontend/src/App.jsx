@@ -1,42 +1,103 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import LangaugeSelect from './components/langaugeSelect';
 import VideoScreen from './components/videoScreen';
 import ScanPage from './components/ScanPage';
 
-function App() {
-  // State to track which screen to display
-  const [view, setView] = useState('welcome');
+function SSEController() {
+  const navigate = useNavigate();
+  const [connectionState, setConnectionState] = useState(0); // 0: connecting, 1: open
   
- 
-  const [eventData, setEventData] = useState(null);
-
+  function waitForEventSourceOpen(eventSource) {
+    if (eventSource.readyState === 1) {
+      return Promise.resolve();
+    }
+    
+    return new Promise((resolve, reject) => {
+      const openListener = () => {
+        eventSource.removeEventListener('open', openListener);
+        eventSource.removeEventListener('error', errorListener);
+        resolve();
+      }
+      const errorListener = (err) => {
+        eventSource.removeEventListener('open', openListener);
+        eventSource.removeEventListener('error', errorListener);
+        console.log(err)
+        reject(new Error("Error establishing EventSource connection"));
+      }
+      eventSource.addEventListener('open', openListener);
+      eventSource.addEventListener('error', errorListener);
+    })};
+  
   useEffect(() => {
-    // Replace '/api/sse-endpoint' with your actual backend URL
-    const eventSource = new EventSource('http://localhost:8000/api/events');
+    console.log("Setting up EventSource connection...");
+    const eventSource = new EventSource('/api/events/');
 
-    // listening for messages
-    eventSource.onmessage = (event) => {
-      console.log("New event received:", event.data);
-      
-      // Parse data if your server sends JSON
-      const parsedData = JSON.parse(event.data);
-      setEventData(parsedData);
+    async function openConnection() {
+      await waitForEventSourceOpen(eventSource);
+      setConnectionState(1);
+      console.log("EventSource connection established.");
 
-      // 3. Trigger the screen change
-      setView('exploration');
+    }
+    openConnection()
+
+    
+
+    // Map event types directly to routes
+    const eventTypeMap = {
+      'scanned_id': '/exploration',
+      'button_press': '/video',
+      'button_press_timeout': '/video'
     };
+  
+    // Event listeners
+    eventSource.addEventListener('scanned_id', (event) => {
+      const data = JSON.parse(event.data);
+      console.log("Received scanned_id event:", data);
+      const targetPath = eventTypeMap['scanned_id'];
+      navigate(targetPath, { state: data });
+    });
 
+    eventSource.addEventListener('button_press', (event) => {
+      const data = JSON.parse(event.data);
+      console.log("Received button_press event:", data);
+      const targetPath = eventTypeMap['button_press'];
+      navigate(targetPath, { lang: data["language"] });
+    });
 
+    eventSource.addEventListener('button_press_timeout', (event) => {
+      const data = JSON.parse(event.data);
+      console.log("Received button_press_timeout event:", data);
+      const targetPath = eventTypeMap['button_press_timeout'];
+      navigate(targetPath, { lang: data["language"] }); 
+    });
+
+    // Cleanup
     return () => {
-      eventSource.close();
+      console.log("Supposed to close EventSource connection. Keeping Open...");
+      //eventSource.close();
     };
-  }, []); 
+  }, [navigate]); 
 
-  // 5. Conditional Rendering
+  // This component renders nothing
+  return (
+    connectionState === 0 ? <div className="w-full h-screen bg-black flex items-center justify-center text-white">Loading....</div> : null
+
+  );
+}
+
+// 2. Main App Component
+function App() {
+  
   return (
     <main>
       <BrowserRouter>
+        
+        <SSEController /> 
+
+        
+
+
         <Routes>
           <Route path="/" element={<ScanPage/>}/>
           <Route path="/exploration" element={<LangaugeSelect/>}/>

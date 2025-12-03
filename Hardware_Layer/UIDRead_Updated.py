@@ -27,13 +27,12 @@ if __name__ == '__main__':
                 continue
             #print('Found card with UID:', [i for i in uid])
 
-            # Combine the UID bytes into a single integer value
-            for i in range(len(uid)):
-                uint = uid[i] % (1<<32) # Ensures value is 32-bit unsigned integer
-                uint = uint << 8*(6 -i) # Shifts bits to correct position
-                #print('{:032b}'.format(uint)) 
-                final_val = uint | final_val # Combines all bytes into final_val
-            
+            # Make sure UID is 7 bytes long
+            if len(uid) != 7:
+                print("UID length is not 7 bytes, skipping...", uid)
+                continue
+            final_val = int.from_bytes(uid, byteorder='big')
+
             print(f"{final_val}") # Prints final_val
             url = f"http://localhost:8000/api/receive-id/?id={final_val}"  # URL for API call
             response = requests.get(url)

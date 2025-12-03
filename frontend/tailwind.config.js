@@ -13,11 +13,8 @@ export default {
 
       fontFamily: {
         title: ["Fredoka", "sans-serif"],
-        subtitle: ["Bubblegum Sans", "sans-serif"],
+        subtitle: ["Noto Sans Telugu", "sans-serif"],
         
-      },
-      backgroundImage: {
-        "lang-bg": "url('./src/assets/background.png')",
       },
       colors: {
         "pink": "#f5224c",

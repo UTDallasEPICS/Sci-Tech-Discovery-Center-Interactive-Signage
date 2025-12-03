@@ -14,7 +14,7 @@ const LangaugeSelect = () => {
       <div className="flex justify-evenly h-full w-full row-start-6 row-end-8">
         <Button mainText={"English"} subText={"English"} color="bg-gradient-to-br from-rose-500 to-pink-500" />
         <Button mainText={"Español"} subText={"Spanish"} color="bg-orange" />
-        <Button mainText={"తెలుగు"} subText={"Telugu"} color="bg-gradient-to-br from-purple-500 to-indigo-500" />
+        <Button mainText={"Telugu"} subText={"Telugu"} color="bg-gradient-to-br from-purple-500 to-indigo-500" />
       </div>
       <h4 className="text-center text-white text-5xl row-start-10 row-end-11 font-subtitle">
         Choose your language to explore the amazing human body
