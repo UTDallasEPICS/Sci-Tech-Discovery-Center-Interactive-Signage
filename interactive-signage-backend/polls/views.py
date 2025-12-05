@@ -9,7 +9,7 @@ BUTTON_RECEIVED_ONCE = False    # Flag to track if a button has been received
 ID_RECEIVED_ONCE = False        # Flag to track if a denary ID has been received 
 CURRENT_DEN_ID = None           # Placeholder for the current denary ID
 CURRENT_BUTTON = None           # Placeholder for the current button state
-TIMEOUT_SECONDS = 5             # Timeout duration in seconds
+TIMEOUT_SECONDS = 15            # Timeout duration in seconds
 
 # SSE event queue and timer
 event_queue = queue.Queue()
