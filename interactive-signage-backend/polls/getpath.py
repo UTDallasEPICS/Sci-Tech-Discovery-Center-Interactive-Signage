@@ -1,13 +1,7 @@
 import os
 import json
 from typing import Dict, Any
-
-#PUSH THIS TO GLOBAL SETTINGS STARTUP APPLICATION PROBABLY?
-
-#seperate function for validating id?
 default = "en"
-
-
 
 '''
 Provide langauge : PARAMETERS binary_id (str), lang(str)
