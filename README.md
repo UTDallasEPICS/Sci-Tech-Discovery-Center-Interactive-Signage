@@ -45,7 +45,7 @@ Note : This project has mock videos and is to be replaced with actual educationa
 
   
 
--> ****_Administrator:_*_**** Manually manages the video content and ID mappings via the JSON file (interactive-signage-backend/polls/testdata.json) and File system (artifacts directory containing video files)
+-> ****_Administrator:_**** Manually manages the video content and ID mappings via the JSON file (interactive-signage-backend/polls/testdata.json) and File system (artifacts directory containing video files)
 
   
   ### User Flow:
@@ -69,7 +69,7 @@ Note : This project has mock videos and is to be replaced with actual educationa
 
   
 
-|- ****NFC Reader****: Reads NFC the ID via PN532 HAT, recognizes the ID, and switches to the language screen
+****NFC Reader****: Reads NFC the ID via PN532 HAT, recognizes the ID, and switches to the language screen
 
   
 
@@ -81,7 +81,7 @@ Note : This project has mock videos and is to be replaced with actual educationa
 
   
 
-|-Allows users to choose a language (English, Spanish, Telugu) via 3 physical buttons in a timeout period.
+Allows users to choose a language (English, Spanish, Telugu) via 3 physical buttons in a timeout period.
 
   
 
@@ -93,13 +93,13 @@ Note : This project has mock videos and is to be replaced with actual educationa
 
   
 
-|-****Video Playback****: Retrieves and plays the correct video file based on the selected ID and language.
+****Video Playback****: Retrieves and plays the correct video file based on the selected ID and language.
 
   
 
   
 
-|-****System Reset****: Returns to splash screen after video completion, to serve the next user.
+****System Reset****: Returns to splash screen after video completion, to serve the next user.
 
   
 
@@ -420,9 +420,9 @@ Use nano .env to open and edit the .env file. Change the key variable and add in
   
 
   
-
+```bash
 SECRET_KEY='<your-generated-secret-key-goes-here>'
-
+```
   
 
   
