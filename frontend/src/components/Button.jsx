@@ -1,11 +1,19 @@
 function Button({mainText, subText, color}){
     return(
-        <button className={`rounded-md bg-pink border-2 border-solid bg-cover m-10 text-left`}>
-            <p className="font-title text-6xl">
-                {mainText}
-                {subText}
-            </p>
+        <button 
+            className={`font-title rounded-2xl relative overflow-hidden h-full w-full
+                      text-white border-2 border-solid px-8
+                        m-10 text-6xl ${color}`}>
+                
+                <div className="flex items-center justify-center">
+                    <h3 className="">
+                    {mainText}
+                    </h3>
+                </div>
 
+                <span className="absolute left-2 bottom-2 text-base font-title">
+                    {subText}
+                </span>
         </button>
     )
 }

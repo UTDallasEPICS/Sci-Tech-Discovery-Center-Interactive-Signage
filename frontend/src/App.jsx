@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LangaugeSelect from './components/langaugeSelect';
 import VideoScreen from './components/videoScreen';
+import ScanPage from './components/ScanPage';
 
 function App() {
   // State to track which screen to display
@@ -34,12 +36,13 @@ function App() {
   // 5. Conditional Rendering
   return (
     <main>
-
-      {view === 'welcome' && <LangaugeSelect />}
-      
-      {view === 'exploration' && (
-        <VideoScreen data={eventData} />
-      )}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<ScanPage/>}/>
+          <Route path="/exploration" element={<LangaugeSelect/>}/>
+          <Route path="/video" element={<VideoScreen/>}/>
+        </Routes>
+      </BrowserRouter>
     </main>
   );
 }
