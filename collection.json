@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "7a07c74b-dbe9-41f0-a7cc-1ffdcf20a940",
+		"name": "My Collection",
+		"description": "Collection of endpoints (localhost):-  \n\n- /api/receive-id/\n    \n- /api/receive-button/\n    \n- /api/showinfo/\n    \n- /api/resetinfo/\n    \n- /api/events/ (SSE endpoint)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50102396",
+		"_collection_link": "https://sakethsai1-101172.postman.co/workspace/61025e79-9ac9-443d-8d48-95da8685b0be/collection/50102396-7a07c74b-dbe9-41f0-a7cc-1ffdcf20a940?action=share&source=collection_link&creator=50102396"
+	},
+	"item": [
+		{
+			"name": "events",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"description": "frontend subscribes to this to receive events"
+			},
+			"response": []
+		},
+		{
+			"name": "showinfo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"description": "frontend calls this to get the path"
+			},
+			"response": []
+		},
+		{
+			"name": "reset",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Resets the backend state, clearing flags and timers."
+			},
+			"response": []
+		},
+		{
+			"name": "receive-id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"description": "ID scan. Starts timeout on backend"
+			},
+			"response": []
+		},
+		{
+			"name": "receive-button",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"description": "hardware layer sends button"
+			},
+			"response": []
+		}
+	]
+}

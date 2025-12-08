@@ -33,8 +33,20 @@ def getpath(binary_id: str, lang: str = default) -> dict:
     #       
             name_val = item.get("name")
             path_dict = item.get("path", {})
-            video_path = path_dict.get(lang, path_dict.get("en"))
-            return {"name": name_val, "video_path": video_path}
+            relative_path = path_dict.get(lang, path_dict.get("en"))
+            
+            if relative_path:
+                # Construct absolute path
+                # Structure: ...Root/interactive-signage-backend/polls/getpath.py
+                # We need to go up 3 levels where 'artifacts' folder is
+                current_dir = os.path.dirname(os.path.abspath(__file__))
+                backend_root = os.path.dirname(current_dir)
+                repo_root = os.path.dirname(backend_root)
+                
+                video_path = os.path.join(repo_root, relative_path)
+                return {"name": name_val, "video_path": video_path}
+            
+            return {"name": name_val, "video_path": None}
 
     #return error if id not found 
     return {"error": "ID match not found"}
