@@ -69,7 +69,7 @@ function SSEController() {
       const data = JSON.parse(event.data);
       console.log("Received button_press_timeout event:", data);
       const targetPath = eventTypeMap['button_press_timeout'];
-      navigate(targetPath, { lang: data["language"] }); 
+      navigate(targetPath, { lang: data["language"] });
     });
 
     // Cleanup
@@ -79,16 +79,12 @@ function SSEController() {
     };
   }, [navigate]); 
 
-  // This component renders nothing
-  return (
-    connectionState === 0 ? <div className="w-full h-screen bg-black flex items-center justify-center text-white">Loading....</div> : null
-
-  );
+  return (null);
 }
 
 // 2. Main App Component
 function App() {
-  
+
   return (
     <main>
       <BrowserRouter>
