@@ -8,5 +8,6 @@ env/
 __pycache__/
 .DS_Store
 .pids
+signage.log
 node_modules/
 frontend/dist/

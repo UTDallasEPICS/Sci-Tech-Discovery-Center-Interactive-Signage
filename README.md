@@ -164,41 +164,39 @@ cd ~/Desktop/Sci-Tech-Discovery-Center-Interactive-Signage
 
 ## Auto-Start on Boot (Optional)
 
-To make the kiosk start automatically every time the Pi is powered on:
-
-1. Open a terminal and create an autostart entry:
+To make the kiosk start automatically every time the Pi is powered on,
+run the included helper script:
 
 ```bash
-mkdir -p ~/.config/autostart
-nano ~/.config/autostart/signage.desktop
+./autostart-enable.sh
 ```
 
-2. Paste the following (change the path if you put the project somewhere other
-   than `~/Desktop`):
+This automatically detects your Pi's desktop environment (labwc on Bookworm,
+or LXDE on older systems) and configures the right autostart method.
 
-```ini
-[Desktop Entry]
-Type=Application
-Name=Sci-Tech Signage
-Exec=/home/pi/Desktop/Sci-Tech-Discovery-Center-Interactive-Signage/start.sh
-X-GNOME-Autostart-enabled=true
-```
-
-3. Save and exit (`Ctrl+O`, `Enter`, `Ctrl+X`).
-
-4. Reboot to test:
+Reboot to test:
 
 ```bash
 sudo reboot
 ```
 
-The system should start on its own after the desktop loads.
+The system should start on its own after the desktop loads. It waits a few
+seconds for everything to be ready, then launches the server and browser.
 
-To **disable** auto-start, delete the file:
+To **disable** auto-start:
 
 ```bash
-rm ~/.config/autostart/signage.desktop
+./autostart-disable.sh
 ```
+
+**If auto-start isn't working**, check the log file for errors:
+
+```bash
+cat signage.log
+```
+
+This file is created automatically whenever `start.sh` runs in the background
+(i.e., launched by autostart rather than from a terminal).
 
 
 ---
@@ -359,6 +357,8 @@ Sci-Tech-Discovery-Center-Interactive-Signage/
 ├── setup.sh                        ← Run once to install everything
 ├── start.sh                        ← Start the kiosk
 ├── stop.sh                         ← Stop the kiosk
+├── autostart-enable.sh             ← Enable auto-start on boot
+├── autostart-disable.sh            ← Disable auto-start on boot
 │
 ├── frontend/                       ← On-screen interface (React)
 │   ├── src/                        ← Source code
