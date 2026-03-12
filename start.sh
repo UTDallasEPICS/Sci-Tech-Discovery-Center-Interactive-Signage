@@ -2,11 +2,21 @@
 # ============================================================
 #  Sci-Tech Discovery Center Interactive Signage — Start
 #  Starts the web server, NFC reader, and button listener.
-#  Press Ctrl+C to stop everything.
+#  Press Ctrl+C to stop everything (when run from a terminal).
 # ============================================================
 
 PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
+LOGFILE="$PROJECT_DIR/signage.log"
 PIDS=()
+
+# If not running in a terminal (e.g., launched by autostart), redirect all
+# output to a log file so errors aren't silently lost.
+if [ ! -t 1 ]; then
+    exec > "$LOGFILE" 2>&1
+    echo "=== Signage autostart at $(date) ==="
+    # Give the desktop and network a moment to finish loading.
+    sleep 5
+fi
 
 cleanup() {
     echo ""
@@ -14,7 +24,6 @@ cleanup() {
     for pid in "${PIDS[@]}"; do
         kill "$pid" 2>/dev/null
     done
-    # Also kill any child processes
     pkill -f "manage.py runserver" 2>/dev/null
     pkill -f "UIDRead_Updated.py" 2>/dev/null
     pkill -f "ButtonPress_Updated.py" 2>/dev/null
@@ -52,7 +61,7 @@ PIDS+=($!)
 echo "  Web server started (http://localhost:8000)"
 
 # Wait for server to come up
-sleep 2
+sleep 3
 
 # --- Start hardware scripts (only on a Raspberry Pi) ---
 
