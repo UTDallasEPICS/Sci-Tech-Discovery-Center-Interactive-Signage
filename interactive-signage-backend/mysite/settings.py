@@ -28,7 +28,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -132,7 +132,7 @@ STATICFILES_DIRS = [
     REACT_BUILD_DIR / 'assets',
 ]
 
-MEDIA_URL = '/home/epics/final_repo/Sci-Tech-Discovery-Center-Interactive-Sinage/'
+MEDIA_URL = '/media/'
 
 MEDIA_ROOT = ARTIFACTS_DIR
 # Default primary key field type
