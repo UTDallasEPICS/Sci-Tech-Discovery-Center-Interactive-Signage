@@ -5,7 +5,7 @@ from django.views.static import serve
 from django.conf import settings
 import os
 
-artifacts_root = os.path.join(settings.BASE_DIR, '..', 'frontend', 'dist', 'artifacts')
+artifacts_root = str(settings.ARTIFACTS_DIR)
 assets_root = str(settings.REACT_BUILD_DIR / 'assets')
 
 urlpatterns = [
