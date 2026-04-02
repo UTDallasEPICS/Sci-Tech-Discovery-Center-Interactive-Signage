@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 export default function VideoScreen() {
   const [videoData, setVideoData] = useState(null);
   const navigate = useNavigate();
+  const videoRef = useRef(null);
+  const progressRef = useRef(null);
 
   useEffect(() => {
     fetch("/api/showinfo/", {
@@ -28,6 +30,22 @@ export default function VideoScreen() {
       .catch((err) => console.error("ShowInfo fetch failed:", err.message));
   }, []);
 
+  useEffect (() => {
+    const video = videoRef.current;
+    const progressBar = progressRef.current;
+
+    if (!video || !progressBar) return;
+
+    const updateProgress = () => {
+      const percent = (video.currentTime / video.duration) * 100;
+      progressBar.style.width = percent + "%";
+    };
+
+    video.addEventListener("timeupdate", updateProgress);
+
+    return () => video.removeEventListener("timeupdate", updateProgress);
+  }, [videoData]); // run when videoData is loaded
+
   const handleVideoEnd = async () => {
     try {
       await fetch("/api/resetinfo/");
@@ -46,16 +64,21 @@ export default function VideoScreen() {
   }
 
   return (
-    <div className="w-full h-screen flex items-center justify-center bg-black">
+    <div className="w-full h-screen flex items-center justify-center bg-black overflow-hidden">
       <video
         src={videoData.video_path}
-        controls
         muted
         autoPlay
         onEnded={handleVideoEnd}
         playsInline
         className="w-full h-full rounded-2xl shadow-lg object-cover"
       />
+
+      <div
+        className="absolute z-2 bottom-0 left-0 h-2 bg-[#7651E0] rounded mt-2"
+        ref={progressRef}
+      ></div>
+
     </div>
   );
 }
