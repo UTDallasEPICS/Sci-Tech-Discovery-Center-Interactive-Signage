@@ -36,8 +36,8 @@ const LangaugeSelect = () => {
           disabled={chosen}
         />
         <Button
-          mainText={"Telugu"}
-          subText={"Telugu"}
+          mainText={"ASL"}
+          subText={"Sign Language"}
           color="bg-gradient-to-br from-purple-500 to-indigo-500"
           onClick={() => handleLanguageSelect("c")}
           disabled={chosen}

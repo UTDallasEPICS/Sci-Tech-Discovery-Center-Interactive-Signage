@@ -12,8 +12,8 @@ export default {
       },
 
       fontFamily: {
-        title: ["Fredoka", "sans-serif"],
-        subtitle: ["Noto Sans Telugu", "sans-serif"],
+        title: ["League Spartan Bold", "sans-serif"],
+        subtitle: ["League Spartan Bold", "sans-serif"],
         
       },
       colors: {
