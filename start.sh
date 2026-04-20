@@ -98,6 +98,7 @@ if command -v chromium-browser &> /dev/null; then
         --disable-infobars \
         --disable-restore-session-state \
         --disable-session-crashed-bubble \
+        --password-store=basic \
         http://localhost:8000 &
 fi
 
