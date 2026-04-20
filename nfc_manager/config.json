@@ -1,0 +1,9 @@
+{
+    "signage_project_path": "../Sci-Tech-Discovery-Center-Interactive-Signage",
+    "languages": ["en", "es", "te"],
+    "language_labels": {
+        "en": "English",
+        "es": "Spanish",
+        "te": "Telugu"
+    }
+}
