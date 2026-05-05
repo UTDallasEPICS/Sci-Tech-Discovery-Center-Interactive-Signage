@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { useEffect, useState } from "react";
+=======
+import { useEffect, useState, useRef } from "react";
+>>>>>>> 41d1071 (Final version from Pi)
 import { useNavigate } from "react-router-dom";
 
 export default function VideoScreen() {
@@ -71,6 +75,10 @@ export default function VideoScreen() {
         autoPlay
         onEnded={handleVideoEnd}
         playsInline
+<<<<<<< HEAD
+=======
+        ref={videoRef}
+>>>>>>> 41d1071 (Final version from Pi)
         className="w-full h-full rounded-2xl shadow-lg object-cover"
       />
 
